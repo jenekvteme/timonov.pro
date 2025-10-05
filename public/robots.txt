@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+Disallow: /_next/
+Disallow: /api/
+Disallow: /private/
+
+Host: https://www.timonov.pro
+Sitemap: https://www.timonov.pro/sitemap.xml

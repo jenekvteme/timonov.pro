@@ -1,0 +1,55 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#080F5B"/>
+      <stop offset="100%" stop-color="#0D19A3"/>
+    </linearGradient>
+    <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="20" />
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- Accent blobs -->
+  <circle cx="1050" cy="120" r="110" fill="#15DB95" opacity="0.08" filter="url(#soft)"/>
+  <circle cx="1080" cy="540" r="160" fill="#E4C580" opacity="0.08" filter="url(#soft)"/>
+
+  <!-- Left title -->
+  <text x="80" y="160" fill="#F4E4C1" font-family="Inter,system-ui,-apple-system,Segoe UI,Roboto" font-size="24" letter-spacing="4">ЭКСПЕРТ</text>
+  <text x="80" y="230" fill="#FFFFFF" font-family="Inter,system-ui,-apple-system,Segoe UI,Roboto" font-size="58" font-weight="800">Евгений Тимонов</text>
+  <text x="80" y="280" fill="#F4E4C1" font-family="Inter,system-ui,-apple-system,Segoe UI,Roboto" font-size="26">
+    Консультант по управлению продажами (B2B) • РФ + международные проекты
+  </text>
+  <text x="80" y="330" fill="#15DB95" font-family="Inter,system-ui,-apple-system,Segoe UI,Roboto" font-size="22">
+    Найм, обучение, контроль команды, внешний РОП
+  </text>
+
+  <!-- Bullets -->
+  <g fill="#F4E4C1" font-family="Inter,system-ui,-apple-system,Segoe UI,Roboto" font-size="20">
+    <text x="80" y="385">• Предсказуемость • Прозрачность • Контроль</text>
+    <text x="80" y="415">• Диагностика → План роста → Внедрение → Результат</text>
+  </g>
+
+  <!-- CTA bar -->
+  <rect x="80" y="465" rx="16" ry="16" width="520" height="70" fill="#15DB95"/>
+  <text x="110" y="510" fill="#07223B" font-family="Inter,system-ui,-apple-system,Segoe UI,Roboto" font-size="28" font-weight="700">
+    Забронировать встречу
+  </text>
+
+  <!-- Photo area: подставь фото, если захочешь, иначе блок сохранится без него -->
+  <!-- Если файл /hero-1.png есть в продакшене, раскомментируй блок ниже -->
+  <!--
+  <clipPath id="photoClip">
+    <rect x="760" y="130" width="340" height="420" rx="28" ry="28"/>
+  </clipPath>
+  <image href="hero-1.png" x="760" y="130" width="340" height="420" preserveAspectRatio="xMidYMid slice" clip-path="url(#photoClip)">
+  <rect x="760" y="130" width="340" height="420" rx="28" ry="28" fill="none" stroke="#F4E4C1" stroke-opacity="0.2"/>
+  -->
+
+  <!-- Safety footer -->
+  <text x="80" y="590" fill="#F4E4C1" opacity="0.7" font-family="Inter,system-ui,-apple-system,Segoe UI,Roboto" font-size="18">
+    РОП • CRM • OSINT • выход на ЛПР • обучение • unit-экономика
+  </text>
+</svg>

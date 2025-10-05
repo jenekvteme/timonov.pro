@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 256 256">
+  <rect width="256" height="256" rx="48" fill="#080F5B"/>
+  <g fill="#15DB95" font-family="Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif" font-weight="800">
+    <text x="50%" y="50%" font-size="128" text-anchor="middle" dominant-baseline="middle">ET</text>
+  </g>
+</svg>

@@ -1,0 +1,100 @@
+// app/privacy/page.tsx
+export const metadata = {
+  title: "Политика конфиденциальности — timonov.pro",
+  description: "Политика конфиденциальности сайта timonov.pro",
+  openGraph: {
+    title: "Политика конфиденциальности — timonov.pro",
+    description: "Политика конфиденциальности сайта timonov.pro",
+    url: "https://www.timonov.pro/privacy",
+    images: ["/og-image.png"],
+    type: "website",
+  },
+};
+
+export default function PrivacyPage() {
+  return (
+    <main className="min-h-screen bg-[#080F5B] text-white">
+      <div className="mx-auto max-w-3xl px-4 py-16">
+        <h1 className="text-3xl font-extrabold">Политика конфиденциальности</h1>
+        <p className="mt-2 text-sm text-white/70">Актуально для сайта https://www.timonov.pro</p>
+
+        <div className="mt-8 space-y-6 text-white/90 leading-relaxed">
+          <section>
+            <h2 className="text-xl font-semibold text-[#E4C580]">1. Общие положения</h2>
+            <p className="mt-2">
+              Настоящая Политика конфиденциальности (далее – «Политика») определяет порядок обработки и защиты
+              персональных данных, получаемых через сайт <strong>timonov.pro</strong> (далее – «Сайт»).
+              Используя Сайт, пользователь подтверждает согласие с условиями данной Политики.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-xl font-semibold text-[#E4C580]">2. Состав собираемой информации</h2>
+            <ul className="mt-2 list-disc pl-5 space-y-1">
+              <li>Данные, указанные пользователем в формах (имя, e-mail, телефон и т.п.).</li>
+              <li>Технические данные: IP-адрес, cookies, параметры браузера и устройства.</li>
+              <li>Информация из переписки и взаимодействий со Сайтом.</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2 className="text-xl font-semibold text-[#E4C580]">3. Цели обработки</h2>
+            <ul className="mt-2 list-disc pl-5 space-y-1">
+              <li>Предоставление доступа к материалам и услугам Сайта.</li>
+              <li>Обратная связь и коммуникация по услугам/заявкам.</li>
+              <li>Информирование о продуктах и сервисах при наличии согласия.</li>
+              <li>Улучшение качества работы Сайта и пользовательского опыта.</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2 className="text-xl font-semibold text-[#E4C580]">4. Правовые основания и условия обработки</h2>
+            <p className="mt-2">
+              Обработка персональных данных осуществляется в соответствии с законодательством Российской Федерации,
+              включая Федеральный закон № 152-ФЗ «О персональных данных», на основании согласия пользователя, а также
+              для заключения и исполнения договоров. Сайт принимает необходимые меры для защиты данных от
+              неправомерного доступа, изменения, раскрытия и уничтожения. Передача третьим лицам возможна в случаях,
+              предусмотренных законом, либо для оказания услуг (например, сервисы онлайн-бронирования/аналитики) при
+              соблюдении требований к обработке данных.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-xl font-semibold text-[#E4C580]">5. Cookies и аналитика</h2>
+            <p className="mt-2">
+              Cookies используются для персонализации и аналитики. Пользователь может ограничить или отключить cookies
+              в настройках браузера — это может повлиять на работу отдельных функций Сайта.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-xl font-semibold text-[#E4C580]">6. Права пользователя</h2>
+            <ul className="mt-2 list-disc pl-5 space-y-1">
+              <li>Получать информацию об обработке своих персональных данных;</li>
+              <li>Требовать уточнения, блокирования или удаления данных;</li>
+              <li>Отзывать согласие на обработку персональных данных.</li>
+            </ul>
+            <p className="mt-2">
+              Запросы можно направлять на электронную почту: <a className="underline" href="mailto:info@timonov.pro">info@timonov.pro</a>.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-xl font-semibold text-[#E4C580]">7. Изменения Политики</h2>
+            <p className="mt-2">
+              Администрация Сайта вправе изменять Политику. Актуальная версия публикуется на странице{" "}
+              <a className="underline" href="/privacy">/privacy</a>.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-xl font-semibold text-[#E4C580]">8. Контакты</h2>
+            <p className="mt-2">
+              По вопросам обработки персональных данных: <a className="underline" href="mailto:info@timonov.pro">info@timonov.pro</a>.
+            </p>
+          </section>
+        </div>
+      </div>
+    </main>
+  );
+}
