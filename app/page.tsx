@@ -363,8 +363,8 @@ export default function ConsultantSite() {
   title="Евгений Тимонов"
   subtitle="Руководитель отдела продаж • 12+ лет практики в активных B2B-продажах (РФ и международка)"
 >
-  {/* важно: overflow-hidden режет любой вылет по ширине */}
-  <div className="mt-6 grid md:grid-cols-2 gap-10 items-start overflow-hidden">
+  {/* по ширине режем (анти-скролл), по высоте — нет */}
+  <div className="mt-6 grid md:grid-cols-2 gap-10 items-start overflow-x-hidden md:overflow-visible">
     {/* ЛЕВО: пункты и кнопки */}
     <div>
       <ul className="space-y-2 text-[#F4E4C1]">
@@ -392,7 +392,6 @@ export default function ConsultantSite() {
           Консультация
         </a>
 
-        {/* Коммерческое предложение */}
         <GhostButton
           href="/files/offer.pdf"
           target="_blank"
@@ -404,7 +403,7 @@ export default function ConsultantSite() {
       </div>
     </div>
 
-    {/* ПРАВО: на мобилке ширина 100%, фикс 420px только с md */}
+    {/* ПРАВО: карточку чуть приподнимаем; высота не режется */}
     <aside className="md:justify-self-end md:self-start md:-mt-28 lg:-mt-[34px]">
       <div className="w-full md:w-[420px] max-w-full mx-auto rounded-3xl border border-white/10 bg-[#0D19A3]/30 shadow-sm">
         <div className="p-6 sm:p-8">
@@ -437,6 +436,7 @@ export default function ConsultantSite() {
 
 
 
+
      {/* Testimonials */}
 <Section id="testimonials" eyebrow="Отзывы" title="Что говорят клиенты">
   {/* 1) Первые 3 карточки — всегда видны */}
@@ -444,7 +444,7 @@ export default function ConsultantSite() {
     {[
       {
         quote:
-          "Выходили на рынок без кредитов и инвестиций, оборотные средства были ограничены. Евгений помог выбрать стратегию и сегмент, чётко выстроил работу с клиентами и систему контроля. Через 1,5 года органически выросли и вышли в 22 региона и попали на полки федеральной сети.",
+          "Выходили на рынок без кредитов и инвестиций, оборотные средства были ограничены. Евгений помог выбрать стратегию и сегмент, чётко выстроил работу с клиентами и систему контроля. За 1,5 года органически выросли и вышли в 22 региона и попали на полки федеральной сети.",
         name: "Роман",
         role: "Директор компании, производство снеков",
       },
@@ -456,7 +456,7 @@ export default function ConsultantSite() {
       },
       {
         quote:
-          "Евгений оптимизировал процесс продаж, сегментировал услуги и вывел студию на корпоративных заказчиков и на международный рынок.",
+          "Евгений оптимизировал процесс продаж, сегментировал услуги и вывел студию на корпоративных заказчиков и на международный рынок. Мы сильно выросли, спасибо.",
         name: "Наталья",
         role: "Операционный директор дизайн-студии",
       },
