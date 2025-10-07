@@ -75,7 +75,36 @@ const MonoLogo = ({ label = "LOGO" }: { label?: string }) => (
 
 // ========== Page ==========
 export default function ConsultantSite() {
-  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [name, setName] = useState("");
+const [company, setCompany] = useState("");
+const [message, setMessage] = useState("");
+
+async function handleSubmit(e: React.FormEvent) {
+  e.preventDefault();
+
+  try {
+    const resp = await fetch("https://timonov-hook.vercel.app/api/telegram", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name, company, phone, message }),
+    });
+
+    const data = await resp.json();
+    if (data.ok) {
+      // Очистим поля и можно показать тост «Ушло»
+      setName("");
+      setCompany("");
+      setPhone("");
+      setMessage("");
+    } else {
+      console.error("Send error:", data);
+    }
+  } catch (err) {
+    console.error(err);
+  }
+}
+
 
   return (
     <div className="min-h-screen bg-[#080F5B] text-[#F4E4C1]">
@@ -586,11 +615,12 @@ export default function ConsultantSite() {
     {/* Левая карточка (форма) */}
     <Card className="md:col-span-2 min-w-0">
       <CardBody>
-        <form action="#" onSubmit={(e)=> e.preventDefault()} className="grid sm:grid-cols-2 gap-4">
-          <input required placeholder="Имя" className="rounded-xl border border-white/20 bg-white/5 text-white placeholder:text-white/60 px-4 py-3 outline-none focus:ring-2 focus:ring-[#15DB95]"/>
-          <input required placeholder="Компания" className="rounded-xl border border-white/20 bg-white/5 text-white placeholder:text-white/60 px-4 py-3 outline-none focus:ring-2 focus:ring-[#15DB95]"/>
-          <input type="email" value={email} onChange={(e)=> setEmail(e.target.value)} placeholder="Email" className="rounded-xl border border-white/20 bg-white/5 text-white placeholder:text-white/60 px-4 py-3 outline-none focus:ring-2 focus:ring-[#15DB95]"/>
-          <textarea placeholder="Кратко о задаче" className="sm:col-span-2 rounded-xl border border-white/20 bg-white/5 text-white placeholder:text-white/60 px-4 py-3 outline-none focus:ring-2 focus:ring-[#15DB95] min-h-[120px]"/>
+        <form onSubmit={handleSubmit} className="grid sm:grid-cols-2 gap-4">
+          <input required placeholder="Имя"value={name} onChange={(e)=> setName(e.target.value)} className="..." />
+          <input required placeholder="Компания" value={company} onChange={(e)=> setCompany(e.target.value)} className="..." />
+          <input type="tel" placeholder="Телефон" value={phone} onChange={(e)=> setPhone(e.target.value)} className="..." />
+
+          <textarea placeholder="Кратко о задаче" value={message} onChange={(e)=> setMessage(e.target.value)} className="..." />
 
           <button type="submit" className="sm:col-span-2 inline-flex items-center justify-center gap-2 rounded-xl bg-[#15DB95] px-6 py-3 text-[#080F5B] font-semibold hover:brightness-110 w-full">
             <Calendar className="h-4 w-4"/> Забронировать встречу (30 минут)
