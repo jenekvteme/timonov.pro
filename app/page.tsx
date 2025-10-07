@@ -2,7 +2,7 @@
 
 
 import { useState } from "react";
-import { Check, ChevronRight, Mail, MessageSquare, Calendar, Star, Quote, Target, Workflow, Rocket, Users, Layers, Sparkles, FileText, PieChart } from "lucide-react";
+import { Check, ChevronRight, Mail, MessageSquare, Calendar, Star, Quote, Target, Workflow, Rocket, Users, Layers, Sparkles, FileText, PieChart, Send } from "lucide-react";
 
 // ========== Palette (from screenshot) ==========
 // Primary Navy: #080F5B | Blue: #0D19A3 | Accent Green: #15DB95
@@ -620,8 +620,7 @@ async function handleSubmit(e: React.FormEvent) {
     required
     placeholder="Имя"
     value={name}
-    onChange={(e) => setName(e.target.value)}
-    autoComplete="name"
+    onChange={(e)=> setName(e.target.value)}
     className="rounded-xl border border-white/20 bg-white/5 text-white placeholder:text-white/60 px-4 py-3 outline-none focus:ring-2 focus:ring-[#15DB95]"
   />
 
@@ -629,38 +628,36 @@ async function handleSubmit(e: React.FormEvent) {
     required
     placeholder="Компания"
     value={company}
-    onChange={(e) => setCompany(e.target.value)}
-    autoComplete="organization"
+    onChange={(e)=> setCompany(e.target.value)}
     className="rounded-xl border border-white/20 bg-white/5 text-white placeholder:text-white/60 px-4 py-3 outline-none focus:ring-2 focus:ring-[#15DB95]"
   />
 
   <input
     type="tel"
     inputMode="tel"
-    required
     placeholder="Телефон"
     value={phone}
-    onChange={(e) => setPhone(e.target.value)}
-    autoComplete="tel"
+    onChange={(e)=> setPhone(e.target.value)}
     className="rounded-xl border border-white/20 bg-white/5 text-white placeholder:text-white/60 px-4 py-3 outline-none focus:ring-2 focus:ring-[#15DB95]"
   />
 
   <textarea
     placeholder="Кратко о задаче"
     value={message}
-    onChange={(e) => setMessage(e.target.value)}
+    onChange={(e)=> setMessage(e.target.value)}
     className="sm:col-span-2 rounded-xl border border-white/20 bg-white/5 text-white placeholder:text-white/60 px-4 py-3 outline-none focus:ring-2 focus:ring-[#15DB95] min-h-[120px]"
   />
 
+  {/* Кнопка отправки */}
   <button
     type="submit"
-    className="sm:col-span-2 inline-flex items-center justify-center gap-2 rounded-xl bg-[#15DB95] px-6 py-3 text-[#080F5B] font-semibold hover:brightness-110 w-full"
+    className="sm:col-span-2 inline-flex items-center justify-center gap-2 rounded-xl bg-[#15DB95] px-6 py-3 text-[#080F5B] font-semibold hover:brightness-110"
   >
-    <Calendar className="h-4 w-4" />
-    Забронировать встречу (30 минут)
+    <Send className="h-4 w-4" />
+    Отправить заявку
   </button>
 
-  {/* кнопки контактов — с переносом на новую строку при нехватке ширины */}
+  {/* Кнопки контактов */}
   <div className="sm:col-span-2 flex flex-wrap gap-3">
     <a
       href="https://t.me/evgeniy_sales"
@@ -695,6 +692,7 @@ async function handleSubmit(e: React.FormEvent) {
     Нажимая на кнопку, вы соглашаетесь с обработкой персональных данных и политикой конфиденциальности.
   </p>
 </form>
+
 
       </CardBody>
     </Card>
