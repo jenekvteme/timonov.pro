@@ -439,7 +439,7 @@ export default function ConsultantSite() {
 
      {/* Testimonials */}
 <Section id="testimonials" eyebrow="Отзывы" title="Что говорят клиенты">
-  {/* Ряд 1 — всегда виден */}
+  {/* 1) Первые 3 карточки — всегда видны */}
   <div className="grid md:grid-cols-3 gap-6">
     {[
       {
@@ -482,12 +482,12 @@ export default function ConsultantSite() {
     ))}
   </div>
 
-  {/* Раскрывашка на <details> */}
-  <details className="group mt-6 flex flex-col">
-  {/* 1) Контент, который раскрывается */}
+  {/* 2) Переключатель (без JS) */}
+  <input id="more-testimonials" type="checkbox" className="peer sr-only" />
+
+  {/* 3) Доп.карточки — раскрываются; кнопка стоит ПОСЛЕ этого блока */}
   <div
-    className="order-1 overflow-hidden transition-[max-height,opacity] duration-500 ease-in-out
-               max-h-0 opacity-0 group-open:max-h-[1200px] group-open:opacity-100"
+    className="mt-6 overflow-hidden transition-[max-height] duration-500 ease-in-out max-h-0 peer-checked:max-h-[4000px]"
     aria-hidden="true"
   >
     <div className="grid md:grid-cols-3 gap-6">
@@ -500,7 +500,7 @@ export default function ConsultantSite() {
         },
         {
           quote:
-            "При открытии московского офиса организовал найм, обучение и мотивацию, а также контроль ключевых показателей. Сам участвовал в сделках и помогал менеджерам закрывать. Благодаря этому офис вышел на план в срок.",
+            "При открытии московского офиса организовал найм, обучение и мотивацию, а также контроль ключевых показателей. Сам участвовал в сделках и помогал менеджерам закрывать. Офис вышел на план в срок.",
           name: "Богдан",
           role: "Собственник компании по продаже готового бизнеса",
         },
@@ -527,29 +527,32 @@ export default function ConsultantSite() {
     </div>
   </div>
 
-  {/* 2) Кнопка — ВСЕГДА после контента */}
-  <summary className="order-2 list-none mt-8 flex justify-center">
-    {/* Показать ещё */}
-    <span className="inline-flex items-center gap-2 rounded-full border border-[#15DB95] text-[#15DB95] px-5 py-2
-                      hover:bg-[#15DB95]/10 transition group-open:hidden cursor-pointer">
+  {/* 4) Кнопки — всегда после раскрывающегося контейнера */}
+  <div className="mt-6 flex justify-center">
+    {/* «Показать ещё» — видна по умолчанию */}
+    <label
+      htmlFor="more-testimonials"
+      className="inline-flex items-center gap-2 rounded-full border border-[#15DB95] text-[#15DB95] px-5 py-2 hover:bg-[#15DB95]/10 transition cursor-pointer peer-checked:hidden"
+    >
       Показать ещё
       <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
         <path d="M6 9l6 6 6-6" />
       </svg>
-    </span>
+    </label>
 
-    {/* Свернуть */}
-    <span className="hidden group-open:inline-flex items-center gap-2 rounded-full border border-[#15DB95]
-                      text-[#15DB95] px-5 py-2 hover:bg-[#15DB95]/10 transition cursor-pointer">
+    {/* «Свернуть» — видна только когда раскрыто */}
+    <label
+      htmlFor="more-testimonials"
+      className="hidden peer-checked:inline-flex items-center gap-2 rounded-full border border-[#15DB95] text-[#15DB95] px-5 py-2 hover:bg-[#15DB95]/10 transition cursor-pointer"
+    >
       Свернуть
       <svg className="h-4 w-4 rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
         <path d="M6 9l6 6 6-6" />
       </svg>
-    </span>
-  </summary>
-</details>
-
+    </label>
+  </div>
 </Section>
+
 
 
 
