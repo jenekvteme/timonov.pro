@@ -79,11 +79,15 @@ export default function ConsultantSite() {
   const [name, setName] = useState("");
 const [company, setCompany] = useState("");
 const [message, setMessage] = useState("");
+const [isSending, setIsSending] = useState(false);
+const [sent, setSent] = useState(false);
 
 async function handleSubmit(e: React.FormEvent) {
   e.preventDefault();
+  if (isSending) return;
 
   try {
+    setIsSending(true);
     const resp = await fetch("https://timonov-hook.vercel.app/api/telegram", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -92,18 +96,32 @@ async function handleSubmit(e: React.FormEvent) {
 
     const data = await resp.json();
     if (data.ok) {
-      // Очистим поля и можно показать тост «Ушло»
+      // очистим поля
       setName("");
       setCompany("");
       setPhone("");
       setMessage("");
+
+      // метрика (пояснение ниже)
+      if (typeof window !== "undefined" && (window as any).ym) {
+        (window as any).ym(Number(process.env.NEXT_PUBLIC_YM_ID || 0), "reachGoal", "form_sent");
+      }
+
+      // показать “Отправлено ✅” на 4 секунды
+      setSent(true);
+      setTimeout(() => setSent(false), 4000);
     } else {
       console.error("Send error:", data);
+      alert("Не удалось отправить. Попробуйте ещё раз.");
     }
   } catch (err) {
     console.error(err);
+    alert("Ошибка сети. Попробуйте ещё раз.");
+  } finally {
+    setIsSending(false);
   }
 }
+
 
 
   return (
@@ -603,6 +621,8 @@ async function handleSubmit(e: React.FormEvent) {
         </div>
       </Section>
 
+
+
       {/* Contact */}
 <Section
   id="contact"
@@ -650,12 +670,16 @@ async function handleSubmit(e: React.FormEvent) {
 
   {/* Кнопка отправки */}
   <button
-    type="submit"
-    className="sm:col-span-2 inline-flex items-center justify-center gap-2 rounded-xl bg-[#15DB95] px-6 py-3 text-[#080F5B] font-semibold hover:brightness-110"
-  >
-    <Send className="h-4 w-4" />
-    Отправить заявку
-  </button>
+  type="submit"
+  disabled={isSending}
+  className={`sm:col-span-2 inline-flex items-center justify-center gap-2 rounded-xl px-6 py-3 font-semibold w-full
+    ${sent ? "bg-emerald-500 text-white" : "bg-[#15DB95] text-[#080F5B]"}
+    ${isSending ? "opacity-70 cursor-not-allowed" : "hover:brightness-110"}
+  `}
+>
+  {sent ? "Отправлено ✅" : (isSending ? "Отправляем…" : "Отправить заявку")}
+</button>
+
 
   {/* Кнопки контактов */}
   <div className="sm:col-span-2 flex flex-wrap gap-3">
