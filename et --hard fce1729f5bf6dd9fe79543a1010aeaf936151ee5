@@ -1,0 +1,41 @@
+[33mcommit fce1729f5bf6dd9fe79543a1010aeaf936151ee5[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Evgenii Timonov <jenekvteme@gmail.com>
+Date:   Tue Oct 7 22:53:48 2025 +0300
+
+    замена email на phone в форме
+
+[33mcommit 52b8e258d5632801fa08ab3fd973bb4829eca028[m
+Author: Evgenii Timonov <jenekvteme@gmail.com>
+Date:   Tue Oct 7 19:03:10 2025 +0300
+
+    фикс: overflow в блоке 'Обо мне' и позиция фото
+
+[33mcommit fe97349783018e498e736956c3ee9fef84c03f40[m
+Author: Evgenii Timonov <jenekvteme@gmail.com>
+Date:   Tue Oct 7 18:11:02 2025 +0300
+
+    fix(testimonials): кнопка 'Свернуть' перенесена вниз, фикс позиционирования на мобильной версии
+
+[33mcommit f6bf8a108a3f051dfdcb505a5519e59212b0e839[m
+Author: Evgenii Timonov <jenekvteme@gmail.com>
+Date:   Tue Oct 7 17:42:20 2025 +0300
+
+    fix(contact): убрал горизонтальный скролл на мобилке (wrap кнопок + min-w-0 + iframe)
+
+[33mcommit a9f928d203162f7f9c778e9fb5344e4e75ce1de8[m
+Author: Evgenii Timonov <jenekvteme@gmail.com>
+Date:   Tue Oct 7 17:20:29 2025 +0300
+
+    фикс адаптации под мобильную версию и overflow
+
+[33mcommit 2d66b202f4532fb33627de774b91488e93d52ac6[m
+Author: jenekvteme <jenekvteme@gmail.com>
+Date:   Mon Oct 6 00:12:17 2025 +0300
+
+    Update page.tsx
+
+[33mcommit 910836cf0f110fb8c4ff67dd338eb6ad703be9da[m
+Author: Evgenii Timonov <jenekvteme@gmail.com>
+Date:   Sun Oct 5 23:50:52 2025 +0300
+
+    Initial commit — сайт timonov.pro
