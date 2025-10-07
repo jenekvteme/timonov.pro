@@ -357,8 +357,14 @@ export default function ConsultantSite() {
 
 
 
-      <Section id="about" eyebrow="Эксперт" title="Евгений Тимонов" subtitle="Руководитель отдела продаж • 12+ лет практики в активных B2B-продажах (РФ и международка)">
-  <div className="mt-6 grid md:grid-cols-2 gap-10 items-start">
+      <Section
+  id="about"
+  eyebrow="Эксперт"
+  title="Евгений Тимонов"
+  subtitle="Руководитель отдела продаж • 12+ лет практики в активных B2B-продажах (РФ и международка)"
+>
+  {/* важно: overflow-hidden режет любой вылет по ширине */}
+  <div className="mt-6 grid md:grid-cols-2 gap-10 items-start overflow-hidden">
     {/* ЛЕВО: пункты и кнопки */}
     <div>
       <ul className="space-y-2 text-[#F4E4C1]">
@@ -378,24 +384,29 @@ export default function ConsultantSite() {
       <div className="mt-6 flex flex-col sm:flex-row gap-3">
         <a
           href="https://calendly.com/jenekvteme/30min"
-          target="_blank" rel="noopener noreferrer"
+          target="_blank"
+          rel="noopener noreferrer"
           className="inline-flex items-center gap-2 rounded-full bg-[#15DB95] px-6 py-3 text-[#080F5B] font-semibold shadow-lg hover:brightness-110 transition"
         >
           <Calendar className="h-4 w-4" />
           Консультация
         </a>
 
-        {/* Коммерческое предложение — как просил */}
-        <GhostButton href="/files/offer.pdf" target="_blank" rel="noopener noreferrer">
+        {/* Коммерческое предложение */}
+        <GhostButton
+          href="/files/offer.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <FileText className="h-4 w-4" />
           Коммерческое предложение
         </GhostButton>
       </div>
     </div>
 
-    {/* ПРАВО: карточка прижата вверх и ПРИПОДНЯТА на десктопе */}
-    <aside className="md:justify-self-end md:self-start md:-mt-28 lg:-mt-34">
-      <div className="w-[420px] max-w-full rounded-3xl border border-white/10 bg-[#0D19A3]/30 shadow-sm">
+    {/* ПРАВО: на мобилке ширина 100%, фикс 420px только с md */}
+    <aside className="md:justify-self-end md:self-start md:-mt-28 lg:-mt-[34px]">
+      <div className="w-full md:w-[420px] max-w-full mx-auto rounded-3xl border border-white/10 bg-[#0D19A3]/30 shadow-sm">
         <div className="p-6 sm:p-8">
           <img
             src="/about_me.png"
@@ -422,6 +433,7 @@ export default function ConsultantSite() {
     </aside>
   </div>
 </Section>
+
 
 
 
