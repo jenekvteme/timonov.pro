@@ -444,13 +444,13 @@ export default function ConsultantSite() {
     {[
       {
         quote:
-          "Выходили на рынок без кредитов и инвестиций, оборотные средства были ограничены. Евгений помог выбрать стратегию и сегмент, чётко выстроил работу с клиентами и систему контроля. За 1,5 года органически выросли и вышли в 22 региона и попали на полки федеральной сети.",
+          "Выходили на рынок без кредитов и инвестиций, оборотные средства были ограничены. Евгений помог выбрать стратегию и сегмент, чётко выстроил работу с клиентами и систему контроля. Через 1,5 года органически выросли и вышли в 22 региона и попали на полки федеральной сети.",
         name: "Роман",
         role: "Директор компании, производство снеков",
       },
       {
         quote:
-          "До прихода Евгения продажи носили случайный характер. Он выстроил систему, обучил и пробустил наш рост. За полгода компания вышла в лидеры по темпам роста.",
+          "До прихода Евгения продажи носили несистемный характер. Он выстроил систему, обучил и пробустил наш рост. За полгода компания вышла в лидеры по темпам роста.",
         name: "Анастасия",
         role: "CEO MedTech-компании",
       },
@@ -572,38 +572,78 @@ export default function ConsultantSite() {
       </Section>
 
       {/* Contact */}
-      <Section id="contact" eyebrow="Контакты" title="Заявка на консультацию" subtitle="Оставьте контакты — вернусь с предложением первого шага в течение рабочего дня.">
-        <div className="grid md:grid-cols-3 gap-6 items-start">
-          <Card className="md:col-span-2">
-            <CardBody>
-              <form action="#" onSubmit={(e)=> e.preventDefault()} className="grid sm:grid-cols-2 gap-4">
-                <input required placeholder="Имя" className="rounded-xl border border-white/20 bg-white/5 text-white placeholder:text-white/60 px-4 py-3 outline-none focus:ring-2 focus:ring-[#15DB95]"/>
-                <input required placeholder="Компания" className="rounded-xl border border-white/20 bg-white/5 text-white placeholder:text-white/60 px-4 py-3 outline-none focus:ring-2 focus:ring-[#15DB95]"/>
-                <input type="email" value={email} onChange={(e)=> setEmail(e.target.value)} placeholder="Email" className="rounded-xl border border-white/20 bg-white/5 text-white placeholder:text-white/60 px-4 py-3 outline-none focus:ring-2 focus:ring-[#15DB95]"/>
-                <textarea placeholder="Кратко о задаче" className="sm:col-span-2 rounded-xl border border-white/20 bg-white/5 text-white placeholder:text-white/60 px-4 py-3 outline-none focus:ring-2 focus:ring-[#15DB95] min-h-[120px]"/>
-                <button type="submit" className="sm:col-span-2 inline-flex items-center justify-center gap-2 rounded-xl bg-[#15DB95] px-6 py-3 text-[#080F5B] font-semibold hover:brightness-110">
-                  <Calendar className="h-4 w-4"/> Забронировать встречу (30 минут)
-                </button>
-                <div className="sm:col-span-2 flex gap-3">
-                  <a href="https://t.me/evgeniy_sales" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-xl px-5 py-3 border border-[#15DB95] text-[#15DB95] hover:bg-[#15DB95]/10"><MessageSquare className="h-4 w-4"/> Telegram</a>
-                  <a href="https://wa.me/79536639992" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-xl px-5 py-3 border border-[#15DB95] text-[#15DB95] hover:bg-[#15DB95]/10"><MessageSquare className="h-4 w-4"/> WhatsApp</a>
-                  <a href="mailto:jenekvteme@gmail.com" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-xl px-5 py-3 border border-white/20 text-white hover:bg-white/10"><Mail className="h-4 w-4"/> Email</a>
-                </div>
-                <p className="sm:col-span-2 text-xs text-white/60">Нажимая на кнопку, вы соглашаетесь с обработкой персональных данных и политикой конфиденциальности.</p>
-              </form>
-            </CardBody>
-          </Card>
-          <Card>
-            <CardBody>
-              <div className="text-sm font-semibold text-[#E4C580]">Онлайн‑запись</div>
-              <div className="mt-2 overflow-hidden rounded-xl border border-white/10 bg-white/5">
-                <iframe src="https://calendly.com/jenekvteme/30min" className="w-full h-[420px]" />
-              </div>
-              <a href="https://calendly.com/jenekvteme/30min" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 mt-3 text-sm font-semibold underline underline-offset-4"><Calendar className="h-4 w-4"/> Открыть в Calendly</a>
-            </CardBody>
-          </Card>
+<Section
+  id="contact"
+  eyebrow="Контакты"
+  title="Заявка на консультацию"
+  subtitle="Оставьте контакты — вернусь с предложением первого шага в течение рабочего дня."
+>
+  {/* overflow-x-hidden + принудительно обнуляем min-width у всех потомков */}
+  <div className="grid md:grid-cols-3 gap-6 items-start overflow-x-hidden [&_*]:min-w-0">
+    {/* Левая карточка (форма) */}
+    <Card className="md:col-span-2 min-w-0">
+      <CardBody>
+        <form action="#" onSubmit={(e)=> e.preventDefault()} className="grid sm:grid-cols-2 gap-4">
+          <input required placeholder="Имя" className="rounded-xl border border-white/20 bg-white/5 text-white placeholder:text-white/60 px-4 py-3 outline-none focus:ring-2 focus:ring-[#15DB95]"/>
+          <input required placeholder="Компания" className="rounded-xl border border-white/20 bg-white/5 text-white placeholder:text-white/60 px-4 py-3 outline-none focus:ring-2 focus:ring-[#15DB95]"/>
+          <input type="email" value={email} onChange={(e)=> setEmail(e.target.value)} placeholder="Email" className="rounded-xl border border-white/20 bg-white/5 text-white placeholder:text-white/60 px-4 py-3 outline-none focus:ring-2 focus:ring-[#15DB95]"/>
+          <textarea placeholder="Кратко о задаче" className="sm:col-span-2 rounded-xl border border-white/20 bg-white/5 text-white placeholder:text-white/60 px-4 py-3 outline-none focus:ring-2 focus:ring-[#15DB95] min-h-[120px]"/>
+
+          <button type="submit" className="sm:col-span-2 inline-flex items-center justify-center gap-2 rounded-xl bg-[#15DB95] px-6 py-3 text-[#080F5B] font-semibold hover:brightness-110 w-full">
+            <Calendar className="h-4 w-4"/> Забронировать встречу (30 минут)
+          </button>
+
+          {/* ВАЖНО: добавили flex-wrap, чтобы кнопки переносились и не «толкали» контейнер */}
+          <div className="sm:col-span-2 flex flex-wrap gap-3">
+            <a href="https://t.me/evgeniy_sales" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-xl px-5 py-3 border border-[#15DB95] text-[#15DB95] hover:bg-[#15DB95]/10">
+              <MessageSquare className="h-4 w-4"/> Telegram
+            </a>
+            <a href="https://wa.me/79536639992" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-xl px-5 py-3 border border-[#15DB95] text-[#15DB95] hover:bg-[#15DB95]/10">
+              <MessageSquare className="h-4 w-4"/> WhatsApp
+            </a>
+            <a href="mailto:jenekvteme@gmail.com" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-xl px-5 py-3 border border-white/20 text-white hover:bg-white/10">
+              <Mail className="h-4 w-4"/> Email
+            </a>
+          </div>
+
+          <p className="sm:col-span-2 text-xs text-white/60">
+            Нажимая на кнопку, вы соглашаетесь с обработкой персональных данных и политикой конфиденциальности.
+          </p>
+        </form>
+      </CardBody>
+    </Card>
+
+    {/* Правая карточка (Calendly) */}
+    <Card className="min-w-0">
+      <CardBody>
+        <div className="text-sm font-semibold text-[#E4C580]">Онлайн-запись</div>
+
+        {/* ВАЖНО: wrapper overflow-hidden + iframe block + w-full + rounded-none */}
+        <div className="mt-2 overflow-hidden rounded-xl border border-white/10 bg-white/5">
+          <iframe
+            src="https://calendly.com/jenekvteme/30min"
+            className="block w-full h-[420px] rounded-none"
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            style={{ border: 0 }}
+          />
         </div>
-      </Section>
+
+        <a
+          href="https://calendly.com/jenekvteme/30min"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 mt-3 text-sm font-semibold underline underline-offset-4"
+        >
+          <Calendar className="h-4 w-4"/> Открыть в Calendly
+        </a>
+      </CardBody>
+    </Card>
+  </div>
+</Section>
+
+
+
 
       {/* Footer */}
 <footer className="border-t border-white/10 bg-[#080F5B]">
