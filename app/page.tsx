@@ -3,6 +3,16 @@
 
 import { useState } from "react";
 import { Check, ChevronRight, Mail, MessageSquare, Calendar, Star, Quote, Target, Workflow, Rocket, Users, Layers, Sparkles, FileText, PieChart, Send } from "lucide-react";
+// поставь это выше компонентов
+import type { ReactNode, AnchorHTMLAttributes } from "react";
+
+type AProps = AnchorHTMLAttributes<HTMLAnchorElement> & {
+  href: string;
+  className?: string;
+  children: ReactNode;
+};
+
+
 
 // === Yandex Metrika (reachGoal helper) ===
 declare global { interface Window { ym?: (...args: any[]) => void } }
@@ -49,33 +59,26 @@ const CardBody = ({ children, className = "" }: any) => (
   <div className={`p-6 sm:p-8 ${className}`}>{children}</div>
 );
 
-const CTAButton = ({ href, children, className = "" }: any) => (
+const CTAButton = ({ href, children, className = "", ...props }: AProps) => (
   <a
     href={href}
+    {...props}
     className={`inline-flex items-center gap-2 rounded-full bg-[#15DB95] px-6 py-3 text-[#080F5B] font-semibold shadow-lg hover:brightness-110 transition ${className}`}
   >
     {children} <ChevronRight className="h-4 w-4" />
   </a>
 );
 
-const GhostButton = ({
-  href,
-  children,
-  className = "",
-  target,
-  rel,
-  onClick,
-}: any) => (
+const GhostButton = ({ href, children, className = "", ...props }: AProps) => (
   <a
     href={href}
-    target={target}
-    rel={rel}
-    onClick={onClick} 
+    {...props}
     className={`inline-flex items-center gap-2 rounded-full px-5 py-3 border border-[#15DB95] text-[#15DB95] hover:bg-[#15DB95]/10 transition ${className}`}
   >
     {children}
   </a>
 );
+
 
 
 const MonoLogo = ({ label = "LOGO" }: { label?: string }) => (
@@ -215,8 +218,8 @@ async function handleSubmit(e: React.FormEvent) {
                 Консультирование собственников и руководителей. Внедрение CRM и процессов, обучение команды, внешний РОП. От первых продаж в стартапе до масштабирования действующего отдела.
               </p>
               <div className="mt-6 flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-3">
-                <CTAButton href="https://calendly.com/jenekvteme/30min" target="_blank" rel="noopener noreferrer"> onClick={() => reach("cta_calendly")} <Calendar className="h-4 w-4"/>Забронировать встречу (30 минут)</CTAButton>
-                <GhostButton href="#services"> onClick={() => reach("cta_services")} <ChevronRight className="h-4 w-4"/>Смотреть услуги</GhostButton>
+                <CTAButton href="https://calendly.com/jenekvteme/30min" target="_blank" rel="noopener noreferrer" onClick={() => reach("cta_calendly")}><Calendar className="h-4 w-4"/>Забронировать встречу (30 минут)</CTAButton>
+                <GhostButton href="#services" onClick={() => reach("cta_services")}> <ChevronRight className="h-4 w-4"/>Смотреть услуги</GhostButton>
                 <a href="/files/checklist_sales_audit_30min.pdf" target="_blank" rel="noopener noreferrer" onClick={() => reach("cta_checklist")} className="inline-flex items-center gap-2 rounded-full px-5 py-3 border border-white/20 bg-white/10 text-white hover:bg-white/20 transition"><FileText className="h-4 w-4"/>Скачать чек‑лист</a>
               </div>
               <div className="mt-6 flex flex-wrap gap-3 text-sm">
