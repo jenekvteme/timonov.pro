@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -13,28 +14,17 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Евгений Тимонов — Консультант по продажам",
+  title: "Евгений Тимонов — Консультант по управлению продажами",
   description:
-    "Помогаю собственникам и руководителям выстраивать отделы продаж, внедрять CRM и выводить бизнес на предсказуемый рост.",
+    "Помогаю компаниям системно увеличить продажи: аудит, внедрение CRM, обучение, регламенты и развитие команды продаж.",
   openGraph: {
-    title: "Евгений Тимонов — Консультант по продажам",
+    title: "Евгений Тимонов — Консультант по управлению продажами",
     description:
-      "Помогаю собственникам и руководителям выстраивать отделы продаж, внедрять CRM и выводить бизнес на предсказуемый рост.",
+      "Помогаю компаниям системно увеличить продажи: аудит, внедрение CRM, обучение, регламенты и развитие команды продаж.",
     url: "https://www.timonov.pro",
     siteName: "timonov.pro",
-    images: [
-      {
-        url: "/og-image.png", // клади картинку предпросмотра в /public
-        width: 1200,
-        height: 630,
-        alt: "Евгений Тимонов — Консультант по продажам",
-      },
-    ],
-    locale: "ru_RU",
+    images: ["/og-image.png"],
     type: "website",
-  },
-  icons: {
-    icon: "/favicon.svg", // фавикон тоже в папку /public
   },
 };
 
@@ -46,11 +36,46 @@ export default function RootLayout({
   return (
     <html lang="ru">
       <head>
-        {/* Дополнительные мета-теги */}
-        <meta name="theme-color" content="#080F5B" />
+        <link rel="icon" href="/favicon.svg" />
+
+        {/* === Yandex.Metrika === */}
+        <Script id="yandex-metrika" strategy="afterInteractive">
+          {`
+            (function(m,e,t,r,i,k,a){
+              m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+              m[i].l=1*new Date();
+              for (var j = 0; j < document.scripts.length; j++) {
+                if (document.scripts[j].src === r) { return; }
+              }
+              k=e.createElement(t),a=e.getElementsByTagName(t)[0];
+              k.async=1;k.src=r;a.parentNode.insertBefore(k,a);
+            })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=104546119', 'ym');
+
+            ym(104546119, 'init', {
+              ssr:true,
+              webvisor:true,
+              clickmap:true,
+              ecommerce:"dataLayer",
+              accurateTrackBounce:true,
+              trackLinks:true
+            });
+          `}
+        </Script>
+
+        <noscript>
+          <div>
+            <img
+              src="https://mc.yandex.ru/watch/104546119"
+              style={{ position: "absolute", left: "-9999px" }}
+              alt=""
+            />
+          </div>
+        </noscript>
+        {/* === /Yandex.Metrika === */}
       </head>
+
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#080F5B] text-[#F4E4C1]`}
       >
         {children}
       </body>

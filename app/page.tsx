@@ -4,6 +4,15 @@
 import { useState } from "react";
 import { Check, ChevronRight, Mail, MessageSquare, Calendar, Star, Quote, Target, Workflow, Rocket, Users, Layers, Sparkles, FileText, PieChart, Send } from "lucide-react";
 
+// === Yandex Metrika (reachGoal helper) ===
+declare global { interface Window { ym?: (...args: any[]) => void } }
+const reach = (goal: string, params: Record<string, any> = {}) => {
+  if (typeof window !== "undefined" && typeof window.ym === "function") {
+    window.ym(104546119, "reachGoal", goal, params);
+  }
+};
+
+
 // ========== Palette (from screenshot) ==========
 // Primary Navy: #080F5B | Blue: #0D19A3 | Accent Green: #15DB95
 // Light Beige: #F4E4C1 | Sand: #E4C580
@@ -55,11 +64,13 @@ const GhostButton = ({
   className = "",
   target,
   rel,
+  onClick,
 }: any) => (
   <a
     href={href}
     target={target}
     rel={rel}
+    onClick={onClick} 
     className={`inline-flex items-center gap-2 rounded-full px-5 py-3 border border-[#15DB95] text-[#15DB95] hover:bg-[#15DB95]/10 transition ${className}`}
   >
     {children}
@@ -110,6 +121,7 @@ async function handleSubmit(e: React.FormEvent) {
       // показать “Отправлено ✅” на 4 секунды
       setSent(true);
       setTimeout(() => setSent(false), 4000);
+      reach("lead_submit", { name, company, phone });
     } else {
       console.error("Send error:", data);
       alert("Не удалось отправить. Попробуйте ещё раз.");
@@ -175,6 +187,7 @@ async function handleSubmit(e: React.FormEvent) {
 
       <a
         href="#contact"
+        onClick={() => reach("cta_consult_top")} 
         className="inline-flex items-center gap-2 rounded-full bg-[#15DB95] px-5 py-0 h-10 text-[#080F5B] font-semibold shadow-lg hover:brightness-110 text-sm whitespace-nowrap"
       >
         <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -202,9 +215,9 @@ async function handleSubmit(e: React.FormEvent) {
                 Консультирование собственников и руководителей. Внедрение CRM и процессов, обучение команды, внешний РОП. От первых продаж в стартапе до масштабирования действующего отдела.
               </p>
               <div className="mt-6 flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-3">
-                <CTAButton href="https://calendly.com/jenekvteme/30min" target="_blank" rel="noopener noreferrer"><Calendar className="h-4 w-4"/>Забронировать встречу (30 минут)</CTAButton>
-                <GhostButton href="#services"><ChevronRight className="h-4 w-4"/>Смотреть услуги</GhostButton>
-                <a href="/files/checklist_sales_audit_30min.pdf" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full px-5 py-3 border border-white/20 bg-white/10 text-white hover:bg-white/20 transition"><FileText className="h-4 w-4"/>Скачать чек‑лист</a>
+                <CTAButton href="https://calendly.com/jenekvteme/30min" target="_blank" rel="noopener noreferrer"> onClick={() => reach("cta_calendly")} <Calendar className="h-4 w-4"/>Забронировать встречу (30 минут)</CTAButton>
+                <GhostButton href="#services"> onClick={() => reach("cta_services")} <ChevronRight className="h-4 w-4"/>Смотреть услуги</GhostButton>
+                <a href="/files/checklist_sales_audit_30min.pdf" target="_blank" rel="noopener noreferrer" onClick={() => reach("cta_checklist")} className="inline-flex items-center gap-2 rounded-full px-5 py-3 border border-white/20 bg-white/10 text-white hover:bg-white/20 transition"><FileText className="h-4 w-4"/>Скачать чек‑лист</a>
               </div>
               <div className="mt-6 flex flex-wrap gap-3 text-sm">
                 <Badge><Check className="h-4 w-4"/> Предсказуемость</Badge>
@@ -443,6 +456,7 @@ async function handleSubmit(e: React.FormEvent) {
           href="/files/offer.pdf"
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() => reach("cta_offer")} 
         >
           <FileText className="h-4 w-4" />
           Коммерческое предложение
@@ -687,6 +701,7 @@ async function handleSubmit(e: React.FormEvent) {
       href="https://t.me/evgeniy_sales"
       target="_blank"
       rel="noopener noreferrer"
+      onClick={() => reach("cta_telegram")} 
       className="inline-flex items-center gap-2 rounded-xl px-5 py-3 border border-[#15DB95] text-[#15DB95] hover:bg-[#15DB95]/10"
     >
       <MessageSquare className="h-4 w-4" />
@@ -696,6 +711,7 @@ async function handleSubmit(e: React.FormEvent) {
       href="https://wa.me/79536639992"
       target="_blank"
       rel="noopener noreferrer"
+      onClick={() => reach("cta_whatsapp")}
       className="inline-flex items-center gap-2 rounded-xl px-5 py-3 border border-[#15DB95] text-[#15DB95] hover:bg-[#15DB95]/10"
     >
       <MessageSquare className="h-4 w-4" />
