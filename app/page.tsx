@@ -91,10 +91,11 @@ const MonoLogo = ({ label = "LOGO" }: { label?: string }) => (
 export default function ConsultantSite() {
   const [phone, setPhone] = useState("");
   const [name, setName] = useState("");
-const [company, setCompany] = useState("");
-const [message, setMessage] = useState("");
-const [isSending, setIsSending] = useState(false);
-const [sent, setSent] = useState(false);
+  const [company, setCompany] = useState("");
+  const [message, setMessage] = useState("");
+  const [isSending, setIsSending] = useState(false);
+  const [sent, setSent] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
 async function handleSubmit(e: React.FormEvent) {
   e.preventDefault();
@@ -150,9 +151,9 @@ async function handleSubmit(e: React.FormEvent) {
 <header className="sticky top-0 z-40 border-b border-white/10 backdrop-blur bg-[#080F5B]/80">
   <div className="mx-auto max-w-6xl px-4 h-16 flex items-center justify-between">
     {/* Лого + подпись */}
-    <a href="#top" className="flex items-center gap-3">
+    <a href="#top" className="flex items-center gap-3" onClick={() => setMobileMenuOpen(false)}>
       <div className="h-9 w-9 rounded-xl bg-[#15DB95] text-[#080F5B] grid place-content-center font-bold">ET</div>
-      <div className="leading-tight">
+      <div className="leading-tight hidden sm:block">
         <div className="font-extrabold">Евгений Тимонов</div>
         <div className="text-xs text-[#F4E4C1]/70">Консультант по управлению продажами</div>
       </div>
@@ -179,7 +180,6 @@ async function handleSubmit(e: React.FormEvent) {
     <div className="hidden md:flex items-center gap-3 ml-6">
       <a
         href="https://t.me/evgeniy_sales" target="_blank" rel="noopener noreferrer"
-
         className="inline-flex items-center gap-2 rounded-full px-5 py-0 h-10 border border-[#15DB95] text-[#15DB95] hover:bg-[#15DB95]/10 text-sm whitespace-nowrap"
       >
         <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -199,7 +199,66 @@ async function handleSubmit(e: React.FormEvent) {
         Забронировать встречу
       </a>
     </div>
+
+    {/* Мобильная кнопка меню */}
+    <button 
+      onClick={() => setMobileMenuOpen(!mobileMenuOpen)} 
+      className="md:hidden text-[#F4E4C1] p-2"
+      aria-label="Menu"
+    >
+      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        {mobileMenuOpen ? (
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+        ) : (
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
+        )}
+      </svg>
+    </button>
   </div>
+
+  {/* Мобильное меню */}
+  {mobileMenuOpen && (
+    <div className="md:hidden absolute top-full left-0 w-full bg-[#080F5B]/95 backdrop-blur-sm border-t border-white/10">
+      <nav className="flex flex-col p-4 space-y-2">
+        {[
+          ["#services","Услуги"],
+          ["#cases","Кейсы"],
+          ["#process","Процесс"],
+          ["#about","Обо мне"],
+          ["#testimonials","Отзывы"],
+          ["#faq","FAQ"],
+          ["#contact","Контакты"],
+        ].map(([href, label]) => (
+          <a 
+            key={href} 
+            href={href as string} 
+            className="hover:text-white text-[#F4E4C1]/80 py-2 px-4 rounded-lg hover:bg-[#0D19A3]/30 transition"
+            onClick={() => setMobileMenuOpen(false)}
+          >
+            {label}
+          </a>
+        ))}
+        <div className="pt-4 space-y-2">
+          <a
+            href="https://t.me/evgeniy_sales" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="block text-center rounded-full py-2 px-4 border border-[#15DB95] text-[#15DB95] hover:bg-[#15DB95]/10"
+            onClick={() => setMobileMenuOpen(false)}
+          >
+            Telegram
+          </a>
+          <a
+            href="#contact"
+            onClick={() => {reach("cta_consult_top"); setMobileMenuOpen(false);}} 
+            className="block text-center rounded-full py-2 px-4 bg-[#15DB95] text-[#080F5B] font-semibold"
+          >
+            Забронировать встречу
+          </a>
+        </div>
+      </nav>
+    </div>
+  )}
 </header>
 
 
@@ -232,7 +291,7 @@ async function handleSubmit(e: React.FormEvent) {
               <div className="rounded-3xl overflow-hidden shadow-2xl border border-white/10">
   <img
     src="/hero-1.png"
-    alt="Евгений Тимонов"
+    alt="Евгений Тимонов — консультант по продажам и внешний РОП с 12+ лет опыта работы с отделами продаж"
     className="w-full aspect-[3/4] object-contain bg-transparent"
   />
 </div>
@@ -249,6 +308,21 @@ async function handleSubmit(e: React.FormEvent) {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* SEO Content Block for long-tail keywords */}
+      <section className="py-12 bg-[#0D19A3]/20">
+        <div className="mx-auto max-w-6xl px-4 text-center">
+          <p className="text-[#F4E4C1]/90 text-lg">
+            <strong className="text-[#15DB95]">Построение отдела продаж с нуля</strong> включает: <strong className="text-[#15DB95]">стратегию сегментации</strong>, {" "}
+            <strong className="text-[#15DB95]">найм менеджеров</strong>, {" "}
+            <strong className="text-[#15DB95]">внедрение CRM</strong>, {" "}
+            <strong className="text-[#15DB95]">обучение продажам</strong> и прозрачный контроль KPI. 
+            Запускаю отделы в нишах: IT, производство, маркетплейсы, дистрибуция.{" "}
+            <strong className="text-[#15DB95]">Внешний РОП</strong> помогает собственникам получить результат без найма штатного руководителя.
+            {" "}<strong className="text-[#15DB95]">Обучение отдела продаж</strong> — это модули по холодным звонкам, OSINT, выходу на ЛПР и закрытию сделок.
+          </p>
         </div>
       </section>
 
@@ -282,21 +356,30 @@ async function handleSubmit(e: React.FormEvent) {
             { icon: <Workflow className="h-6 w-6"/>, title: "Найм отдела продаж", text: "Найм менеджеров и РОПа - от вакансий до онбординга.", bullets: ["Конверсионная продающая вакансия", "Собеседования и выводы для собственника", "Онбординг, чек‑листы и регламенты"] }
             
           ].map((s) => (
-            <Card key={s.title}>
+            <Card key={s.title} className="transition-all duration-300 hover:shadow-lg hover:-translate-y-2 hover:bg-[#0D19A3]/25">
               <CardBody>
                 <div className="flex items-start gap-4">
-                  <div className="h-12 w-12 rounded-2xl bg-[#15DB95] text-[#080F5B] grid place-content-center">{s.icon}</div>
+                  <div className="h-12 w-12 rounded-2xl bg-[#15DB95] text-[#080F5B] grid place-content-center transition-transform duration-300 group-hover:scale-110">{s.icon}</div>
                   <div>
                     <h3 className="text-xl font-bold text-[#15DB95]">{s.title}</h3>
                     <p className="mt-1 text-[#F4E4C1]/80">{s.text}</p>
                     <ul className="mt-3 space-y-2 text-sm text-[#F4E4C1]/90">
                       {s.bullets.map((b: string) => (<li key={b} className="flex gap-2"><Check className="h-4 w-4 mt-[3px] text-[#15DB95]"/>{b}</li>))}
                     </ul>
+                    <div className="mt-3 text-xs text-[#15DB95]/80 transition-colors">
+                      <a href="#process" className="hover:text-[#15DB95] underline">→ См. процесс работы</a>
+                    </div>
                   </div>
                 </div>
               </CardBody>
             </Card>
           ))}
+        </div>
+        <div className="mt-8 text-center">
+          <p className="text-[#F4E4C1]/80 text-sm">
+            Детали по каждой услуге → <a href="#faq" className="text-[#15DB95] hover:underline">FAQ</a> | 
+            Все <a href="#cases" className="text-[#15DB95] hover:underline ml-2">кейсы</a> и результаты
+          </p>
         </div>
       </Section>
 
@@ -444,6 +527,10 @@ async function handleSubmit(e: React.FormEvent) {
         ))}
       </ul>
 
+      <div className="mt-4 text-sm text-[#F4E4C1]/70">
+        <p>Подробнее о <a href="#services" className="text-[#15DB95] hover:underline">услугах</a> и <a href="#cases" className="text-[#15DB95] hover:underline">результатах</a> →</p>
+      </div>
+
       <div className="mt-6 flex flex-col sm:flex-row gap-3">
         <a
           href="https://calendly.com/jenekvteme/30min"
@@ -473,7 +560,7 @@ async function handleSubmit(e: React.FormEvent) {
         <div className="p-6 sm:p-8">
           <img
             src="/about_me.png"
-            alt="Евгений Тимонов"
+            alt="Евгений Тимонов — руководитель отдела продаж, консультант по управлению продажами, внешний РОП"
             className="w-full h-auto object-contain rounded-3xl"
           />
           <div className="mt-4 font-semibold text-[#E4C580]">
@@ -629,6 +716,14 @@ async function handleSubmit(e: React.FormEvent) {
             {q: "Работаете ли вы по NDA?", a: "Да. Подписываем NDA до передачи доступов и данных."},
             {q: "Какие сроки?", a: "Диагностика 2–4 недели, внедрение 1–3 недели, обучение 1–1.5 недели. Внешний РОП — от 2–3 месяцев."},
             {q: "Можно ли обучить мой отдел под нишу?", a: "Да. Адаптирую программу под продукт, аудиторию и цикл сделки."},
+            {q: "Как запустить отдел продаж с нуля?", a: "Диагностика целевого сегмента и продукта → найм менеджеров по чётким критериям → внедрение CRM и регламентов → обучение и первые продажи → контроль KPI."},
+            {q: "Сколько стоит внешний РОП?", a: "Стоимость зависит от масштаба отдела и задач. Средняя вилка: 150-300 тыс. руб/мес за part-time управление и еженедельные спринты."},
+            {q: "Как нанять менеджеров по продажам?", a: "Разработаем продающую вакансию → проведём рекрутинг по каналам → отберём кандидатов → дадим заключение для собственника. Онбординг включён."},
+            {q: "Какой CRM выбрать для отдела продаж?", a: "Работаю с amoCRM, Bitrix24. Подберу под вашу задачу, настрою воронку, SLA, отчётность и дашборды."},
+            {q: "Как обучить отдел холодным звонкам?", a: "Модули: OSINT и поиск контактов, выход на ЛПР, скрипты и отработка возражений. Разборы звонков, ролевые игры, контроль качества."},
+            {q: "Что такое юнит-экономика продаж?", a: "Расчёт маржи по сделке: затраты на привлечение клиента vs доход. Настрою систему учёта и контроля для прозрачности воронки."},
+            {q: "Как увеличить конверсию в отделе продаж?", a: "Диагностика узких мест в воронке → гипотезы улучшений → настройка процессов и SLA → контроль качества коммуникаций → A/B тесты."},
+            {q: "В чем разница между консультантом и внешним РОП?", a: "Консультант: диагностика, план, рекомендации. Внешний РОП: ежедневное управление, контроль, развитие команды, результат."},
           ].map((f)=> (
             <Card key={f.q}><CardBody>
               <div className="font-semibold text-[#15DB95]">{f.q}</div>
@@ -797,7 +892,7 @@ async function handleSubmit(e: React.FormEvent) {
 </footer>
 
 
-     {/* SEO JSON-LD */}
+     {/* SEO JSON-LD - Person Schema */}
 <script
   type="application/ld+json"
   dangerouslySetInnerHTML={{
@@ -805,29 +900,226 @@ async function handleSubmit(e: React.FormEvent) {
       "@context": "https://schema.org",
       "@type": "Person",
       "name": "Евгений Тимонов",
-      "jobTitle": "Консультант по управлению продажами",
+      "jobTitle": "Руководитель отдела продаж, Консультант по управлению продажами",
       "url": "https://www.timonov.pro",
       "image": "https://www.timonov.pro/hero-1.png",
-      "email": "mailto:jenekvteme@gmail.com",
-      "telephone": "+7-953-663-99-92",
-      "sameAs": [
-        "https://t.me/evgeniy_sales",
-        "https://wa.me/79536639992",
-        "https://calendly.com/jenekvteme/30min"
+      "description": "Консультант по управлению продажами и внешний РОП с 12+ лет опыта. Специализация: запуск отдела продаж с нуля, обучение отделов продаж, найм менеджеров, внедрение CRM и регламентов.",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5",
+        "bestRating": "5",
+        "worstRating": "1",
+        "ratingCount": "5"
+      },
+      "review": [
+        {
+          "@type": "Review",
+          "author": {
+            "@type": "Person",
+            "name": "Роман"
+          },
+          "reviewBody": "Выходили на рынок без кредитов и инвестиций, оборотные средства были ограничены. Евгений помог выбрать стратегию и сегмент, чётко выстроил работу с клиентами и систему контроля. За 1,5 года органически выросли и вышли в 22 региона и попали на полки федеральной сети.",
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": "5"
+          }
+        },
+        {
+          "@type": "Review",
+          "author": {
+            "@type": "Person",
+            "name": "Анастасия"
+          },
+          "reviewBody": "До прихода Евгения продажи носили несистемный характер. Он выстроил систему, обучил и пробустил наш рост. За полгода компания вышла в лидеры по темпам роста.",
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": "5"
+          }
+        },
+        {
+          "@type": "Review",
+          "author": {
+            "@type": "Person",
+            "name": "Наталья"
+          },
+          "reviewBody": "Евгений оптимизировал процесс продаж, сегментировал услуги и вывел студию на корпоративных заказчиков и на международный рынок. Мы сильно выросли, спасибо.",
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": "5"
+          }
+        }
+      ],
+      "makesOffer": [
+        {
+          "@type": "Service",
+          "name": "Запуск отдела продаж с нуля",
+          "description": "Полное построение и запуск отдела продаж: стратегия, найм, процессы, CRM",
+          "provider": {
+            "@type": "Person",
+            "name": "Евгений Тимонов"
+          },
+          "areaServed": ["RU", "BY", "KZ"]
+        },
+        {
+          "@type": "Service",
+          "name": "Внешний РОП (part-time)",
+          "description": "Управление отделом продаж на аутсорсинге: ежедневные разборы, контроль KPI, развитие команды",
+          "provider": {
+            "@type": "Person",
+            "name": "Евгений Тимонов"
+          }
+        },
+        {
+          "@type": "Service",
+          "name": "Обучение отдела продаж",
+          "description": "Обучение менеджеров продажам: модули по холодным звонкам, OSINT, выходу на ЛПР, скрипты и ролевые игры",
+          "provider": {
+            "@type": "Person",
+            "name": "Евгений Тимонов"
+          }
+        },
+        {
+          "@type": "Service",
+          "name": "Найм отдела продаж",
+          "description": "Найм менеджеров и РОП: вакансии, собеседования, онбординг",
+          "provider": {
+            "@type": "Person",
+            "name": "Евгений Тимонов"
+          }
+        },
+        {
+          "@type": "Service",
+          "name": "Диагностика отдела продаж",
+          "description": "Аудит продаж: интервью, анализ воронки, узкие места, план улучшений на 4-6 недель",
+          "provider": {
+            "@type": "Person",
+            "name": "Евгений Тимонов"
+          }
+        },
+        {
+          "@type": "Service",
+          "name": "Внедрение CRM и процессов продаж",
+          "description": "Внедрение amoCRM/Bitrix24, настройка воронки, отчётность, SLA, регламенты",
+          "provider": {
+            "@type": "Person",
+            "name": "Евгений Тимонов"
+          }
+        }
       ],
       "knowsAbout": [
         "Sales Management",
         "B2B Sales",
         "CRM Implementation",
         "Cold Outreach",
-        "OSINT"
+        "OSINT",
+        "Lead Generation",
+        "Sales Training",
+        "Team Building",
+        "KPI Management",
+        "Sales Analytics",
+        "Customer Acquisition",
+        "Revenue Growth"
       ],
-      "areaServed": ["Россия", "СНГ", "Европа", "США"],
-      "availableService": [
-        { "@type": "Service", "name": "Диагностика продаж" },
-        { "@type": "Service", "name": "Внедрение CRM и регламентов" },
-        { "@type": "Service", "name": "Обучение отдела продаж" },
-        { "@type": "Service", "name": "Внешний РОП (part-time)" }
+      "areaServed": [
+        {"@type": "Country", "name": "Россия"},
+        {"@type": "Country", "name": "Беларусь"},
+        {"@type": "Country", "name": "Казахстан"},
+        {"@type": "Country", "name": "CIS"}
+      ],
+      "hasOccupation": {
+        "@type": "Occupation",
+        "name": "Руководитель отдела продаж",
+        "occupationLocation": {
+          "@type": "Country",
+          "name": "Россия"
+        },
+        "occupationalCategory": "Sales Management",
+        "skills": "Управление продажами, Обучение, CRM, Найм, Холодные звонки"
+      },
+      "email": "jenekvteme@gmail.com",
+      "telephone": "+7-953-663-99-92",
+      "sameAs": [
+        "https://t.me/evgeniy_sales",
+        "https://wa.me/79536639992",
+        "https://calendly.com/jenekvteme/30min",
+        "https://timonovpro.vercel.app"
+      ]
+    }),
+  }}
+/>
+
+     {/* SEO JSON-LD - FAQPage Schema */}
+<script
+  type="application/ld+json"
+  dangerouslySetInnerHTML={{
+    __html: JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Как запустить отдел продаж с нуля?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Диагностика целевого сегмента и продукта → найм менеджеров по чётким критериям → внедрение CRM и регламентов → обучение и первые продажи → контроль KPI."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Сколько стоит внешний РОП?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Стоимость зависит от масштаба отдела и задач. Средняя вилка: 150-300 тыс. руб/мес за part-time управление и еженедельные спринты."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Как нанять менеджеров по продажам?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Разработаем продающую вакансию → проведём рекрутинг по каналам → отберём кандидатов → дадим заключение для собственника. Онбординг включён."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Какой CRM выбрать для отдела продаж?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Работаю с amoCRM, Bitrix24. Подберу под вашу задачу, настрою воронку, SLA, отчётность и дашборды."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Как обучить отдел холодным звонкам?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Модули: OSINT и поиск контактов, выход на ЛПР, скрипты и отработка возражений. Разборы звонков, ролевые игры, контроль качества."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Что такое юнит-экономика продаж?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Расчёт маржи по сделке: затраты на привлечение клиента vs доход. Настрою систему учёта и контроля для прозрачности воронки."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Как увеличить конверсию в отделе продаж?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Диагностика узких мест в воронке → гипотезы улучшений → настройка процессов и SLA → контроль качества коммуникаций → A/B тесты."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "В чем разница между консультантом и внешним РОП?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Консультант: диагностика, план, рекомендации. Внешний РОП: ежедневное управление, контроль, развитие команды, результат."
+          }
+        }
       ]
     }),
   }}
