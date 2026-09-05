@@ -179,7 +179,7 @@ async function handleSubmit(e: React.FormEvent) {
     {/* Кнопки действий */}
     <div className="hidden md:flex items-center gap-3 ml-6">
       <a
-        href="https://t.me/evgeniy_sales" target="_blank" rel="noopener noreferrer"
+        href="https://t.me/evgen_timon" target="_blank" rel="noopener noreferrer"
         className="inline-flex items-center gap-2 rounded-full px-5 py-0 h-10 border border-[#15DB95] text-[#15DB95] hover:bg-[#15DB95]/10 text-sm whitespace-nowrap"
       >
         <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -240,7 +240,7 @@ async function handleSubmit(e: React.FormEvent) {
         ))}
         <div className="pt-4 space-y-2">
           <a
-            href="https://t.me/evgeniy_sales" 
+            href="https://t.me/evgen_timon" 
             target="_blank" 
             rel="noopener noreferrer"
             className="block text-center rounded-full py-2 px-4 border border-[#15DB95] text-[#15DB95] hover:bg-[#15DB95]/10"
@@ -796,7 +796,7 @@ async function handleSubmit(e: React.FormEvent) {
   {/* Кнопки контактов */}
   <div className="sm:col-span-2 flex flex-wrap gap-3">
     <a
-      href="https://t.me/evgeniy_sales"
+      href="https://t.me/evgen_timon"
       target="_blank"
       rel="noopener noreferrer"
       onClick={() => reach("cta_telegram")} 
@@ -1039,7 +1039,7 @@ async function handleSubmit(e: React.FormEvent) {
       "email": "jenekvteme@gmail.com",
       "telephone": "+7-953-663-99-92",
       "sameAs": [
-        "https://t.me/evgeniy_sales",
+        "https://t.me/evgen_timon",
         "https://wa.me/79536639992",
         "https://calendly.com/jenekvteme/30min",
         "https://timonovpro.vercel.app"
